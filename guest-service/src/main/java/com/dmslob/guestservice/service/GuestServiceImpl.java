@@ -8,9 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Slf4j
@@ -21,18 +18,18 @@ public class GuestServiceImpl implements GuestService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<GuestDto> getById(Long guestId) {
-        return Optional.of(guestRepository.findById(guestId)
+    public GuestDto getById(Long guestId) {
+        return guestRepository.findById(guestId)
                 .map(guest -> guestMapper.map(guest, GuestDto.class))
-                .orElseThrow(() -> new RuntimeException("Guest is not found")));
+                .orElseThrow(() -> new RuntimeException("Guest is not found"));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<GuestDto> getByEmail(String emailAddress) {
-        return Optional.of(guestRepository.findByEmailAddress(emailAddress)
+    public GuestDto getByEmail(String email) {
+        return guestRepository.findByEmail(email)
                 .map(guest -> guestMapper.map(guest, GuestDto.class))
-                .orElseThrow(() -> new RuntimeException("Guest is not found")));
+                .orElseThrow(() -> new RuntimeException("Guest is not found"));
     }
 
     @Override

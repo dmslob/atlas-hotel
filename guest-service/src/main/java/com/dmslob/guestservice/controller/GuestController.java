@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
@@ -54,7 +53,7 @@ public class GuestController {
     @ResponseStatus(HttpStatus.OK)
     public GuestDto getById(@PathVariable(name = "id") long guestId) {
         log.info("Getting Guest by id {}", guestId);
-        return guestService.getById(guestId).orElse(null);
+        return guestService.getById(guestId);
     }
 
     @Operation(
@@ -64,7 +63,7 @@ public class GuestController {
             method = "GET")
     @GetMapping(params = "email")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<GuestDto> getByEmail(@RequestParam(name = "email") String email) {
+    public GuestDto getByEmail(@RequestParam(name = "email") String email) {
         log.info("Getting Guest by email {}", email);
         return guestService.getByEmail(email);
     }

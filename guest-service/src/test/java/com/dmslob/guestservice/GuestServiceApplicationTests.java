@@ -9,5 +9,4 @@ class GuestServiceApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
