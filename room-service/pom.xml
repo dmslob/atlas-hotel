@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.dmslob</groupId>
-    <artifactId>guest-service</artifactId>
+    <artifactId>room-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>guest-service</name>
-    <description>Data service to request info about guests</description>
+    <name>room-service</name>
+    <description>Data service to request info about rooms</description>
 
     <properties>
         <java.version>21</java.version>

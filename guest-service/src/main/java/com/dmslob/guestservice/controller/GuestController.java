@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(
+        name = "CRUD REST APIs for Guest details",
+        description = "CRUD REST APIs to CREATE, UPDATE, FETCH AND DELETE guest details"
+)
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -61,6 +66,14 @@ public class GuestController {
             description = "Get Guest by email address",
             parameters = {@Parameter(name = "emailAddress")},
             method = "GET")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error")
+    })
     @GetMapping(params = "email")
     @ResponseStatus(HttpStatus.OK)
     public GuestDto getByEmail(@RequestParam(name = "email") String email) {

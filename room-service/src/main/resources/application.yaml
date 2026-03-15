@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
-    name: guest-service
+    name: room-service
   h2:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:guestdb
+    url: jdbc:h2:mem:roomdb
   jpa:
     hibernate:
       ddl-auto: update
