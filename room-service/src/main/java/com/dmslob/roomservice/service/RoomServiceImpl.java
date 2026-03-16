@@ -4,6 +4,7 @@ import com.dmslob.roomservice.model.RoomDto;
 import com.dmslob.roomservice.repository.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -14,6 +15,7 @@ public class RoomServiceImpl implements RoomService {
     private final ModelMapper modelMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public RoomDto getById(Long roomId) {
         return roomRepository.findById(roomId)
                 .map(room -> modelMapper.map(room, RoomDto.class))
@@ -21,6 +23,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RoomDto getByRoomNumber(String roomNumber) {
         return roomRepository.findByRoomNumber(roomNumber)
                 .map(room -> modelMapper.map(room, RoomDto.class))
@@ -28,6 +31,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RoomDto> getAll() {
         return StreamSupport.stream(roomRepository.findAll().spliterator(), false)
                 .map(guest -> modelMapper.map(guest, RoomDto.class))

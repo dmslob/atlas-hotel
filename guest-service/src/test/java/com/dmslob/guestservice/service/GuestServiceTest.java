@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +40,9 @@ class GuestServiceTest {
                 "John",
                 "Doe",
                 "john.doe@example.com",
-                "123 Main St",
                 "USA",
-                "CA",
-                "123-456-7890");
+                "123-456-7890",
+                LocalDateTime.now());
         when(guestRepository.findById(guestId)).thenReturn(Optional.of(guest));
         when(guestMapper.map(guest, GuestDto.class)).thenReturn(guestDto);
         // When
@@ -73,7 +73,8 @@ class GuestServiceTest {
         String email = "john.doe@example.com";
         Guest guest = new Guest();
         guest.setEmail(email);
-        GuestDto guestDto = new GuestDto(1L, "John", "Doe", email, "123 Main St", "USA", "CA", "123-456-7890");
+        GuestDto guestDto = new GuestDto(1L, "John",
+                "Doe", email, "USA", "123-456-7890", LocalDateTime.now());
         when(guestRepository.findByEmail(email)).thenReturn(Optional.of(guest));
         when(guestMapper.map(guest, GuestDto.class)).thenReturn(guestDto);
         // When
@@ -106,8 +107,8 @@ class GuestServiceTest {
         Guest guest2 = new Guest();
         guest2.setId(2L);
         List<Guest> guests = List.of(guest1, guest2);
-        GuestDto dto1 = new GuestDto(1L, "John", "Doe", "john@example.com", null, null, null, null);
-        GuestDto dto2 = new GuestDto(2L, "Jane", "Smith", "jane@example.com", null, null, null, null);
+        GuestDto dto1 = new GuestDto(1L, "John", "Doe", "john@example.com", "USA", null, LocalDateTime.now());
+        GuestDto dto2 = new GuestDto(2L, "Jane", "Smith", "jane@example.com", "USA", null, LocalDateTime.now());
         List<GuestDto> expectedDtos = List.of(dto1, dto2);
         when(guestRepository.findAll()).thenReturn(guests);
         when(guestMapper.map(guest1, GuestDto.class)).thenReturn(dto1);
