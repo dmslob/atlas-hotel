@@ -12,5 +12,4 @@ public class RoomDto {
     private String name;
     private String roomNumber;
     private String bedInfo;
-    private String status;
 }

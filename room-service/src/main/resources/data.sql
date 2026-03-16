@@ -1,51 +1,28 @@
-INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO, STATUS)
-VALUES ('Single Economy', '101', '1 Twin', 'AVAILABLE'),
-       ('Single Economy', '102', '1 Twin', 'RESERVED'),
-       ('Standard Double', '103', '1 Queen', 'AVAILABLE'),
-       ('Standard Double', '104', '1 Queen', 'AVAILABLE'),
-       ('Twin Deluxe', '105', '2 Twin', 'RESERVED'),
-       ('Standard Double', '106', '1 Queen', 'AVAILABLE'),
-       ('Business Suite', '201', '1 King', 'RESERVED'),
-       ('Business Suite', '202', '1 King', 'AVAILABLE'),
-       ('Family Room', '203', '2 Queen', 'AVAILABLE'),
-       ('Family Room', '204', '2 Queen', 'RESERVED'),
-       ('Single Economy', '205', '1 Twin', 'AVAILABLE'),
-       ('Standard Double', '206', '1 Queen', 'AVAILABLE'),
-       ('Twin Deluxe', '301', '2 Twin', 'AVAILABLE'),
-       ('Twin Deluxe', '302', '2 Twin', 'RESERVED'),
-       ('King Suite', '303', '1 King', 'AVAILABLE'),
-       ('King Suite', '304', '1 King', 'AVAILABLE'),
-       ('Standard Double', '305', '1 Queen', 'RESERVED'),
-       ('Single Economy', '306', '1 Twin', 'AVAILABLE'),
-       ('Penthouse', '401', '1 California King', 'RESERVED'),
-       ('Executive Suite', '402', '1 King', 'AVAILABLE'),
-       ('Standard Double', '107', '1 Queen', 'AVAILABLE'),
-       ('Standard Double', '108', '1 Queen', 'RESERVED'),
-       ('Twin Deluxe', '109', '2 Twin', 'AVAILABLE'),
-       ('Single Economy', '110', '1 Twin', 'AVAILABLE'),
-       ('Business Suite', '207', '1 King', 'RESERVED'),
-       ('Family Room', '208', '2 Queen', 'AVAILABLE'),
-       ('Family Room', '209', '2 Queen', 'AVAILABLE'),
-       ('Single Economy', '210', '1 Twin', 'RESERVED'),
-       ('King Suite', '307', '1 King', 'AVAILABLE'),
-       ('King Suite', '308', '1 King', 'AVAILABLE'),
-       ('Twin Deluxe', '309', '2 Twin', 'RESERVED'),
-       ('Standard Double', '310', '1 Queen', 'AVAILABLE'),
-       ('Executive Suite', '403', '1 King', 'AVAILABLE'),
-       ('Executive Suite', '404', '1 King', 'RESERVED'),
-       ('Single Economy', '111', '1 Twin', 'AVAILABLE'),
-       ('Standard Double', '112', '1 Queen', 'AVAILABLE'),
-       ('Twin Deluxe', '113', '2 Twin', 'AVAILABLE'),
-       ('Business Suite', '211', '1 King', 'RESERVED'),
-       ('Family Room', '212', '2 Queen', 'AVAILABLE'),
-       ('King Suite', '311', '1 King', 'AVAILABLE'),
-       ('Standard Double', '312', '1 Queen', 'RESERVED'),
-       ('Single Economy', '114', '1 Twin', 'AVAILABLE'),
-       ('Standard Double', '115', '1 Queen', 'AVAILABLE'),
-       ('Twin Deluxe', '116', '2 Twin', 'RESERVED'),
-       ('Business Suite', '213', '1 King', 'AVAILABLE'),
-       ('Family Room', '214', '2 Queen', 'RESERVED'),
-       ('King Suite', '313', '1 King', 'AVAILABLE'),
-       ('Standard Double', '314', '1 Queen', 'AVAILABLE'),
-       ('Executive Suite', '405', '1 King', 'AVAILABLE'),
-       ('Penthouse', '406', '1 California King', 'RESERVED');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P1', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P2', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P3', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P4', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P5', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Piccadilly', 'P6', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C1', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C2', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Cambridge', 'C3', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W1', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W2', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W3', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W4', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W5', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W6', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Westminster', 'W7', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O1', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O2', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O3', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O4', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Oxford', 'O5', '1Q');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V1', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V2', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Victoria', 'V3', '2D');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M1', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M2', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M3', '1K');
+INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO) VALUES ('Manchester', 'M4', '1K');

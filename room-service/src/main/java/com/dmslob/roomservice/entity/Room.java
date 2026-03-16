@@ -20,7 +20,4 @@ public class Room {
 
     @Column(name = "BED_INFO")
     private String bedInfo;
-
-    @Column(name = "STATUS")
-    private String status;
 }

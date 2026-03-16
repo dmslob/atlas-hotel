@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class GuestController {
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<GuestDto> getAll() {
         log.info("Getting all Guests");
         return guestService.getAll();
@@ -53,6 +55,7 @@ public class GuestController {
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public GuestDto getById(@PathVariable(name = "id") long guestId) {
         log.info("Getting Guest by id {}", guestId);
         return guestService.getById(guestId);
@@ -72,6 +75,7 @@ public class GuestController {
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping(params = "email")
+    @ResponseStatus(HttpStatus.OK)
     public GuestDto getByEmail(@RequestParam(name = "email") String email) {
         log.info("Getting Guest by email {}", email);
         return guestService.getByEmail(email);

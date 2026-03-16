@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,8 +25,8 @@ class GuestControllerTest {
     @Test
     void should_return_list_of_guests_when_getting_all() {
         // Given
-        GuestDto dto1 = new GuestDto(1L, "John", "Doe", "john@example.com", "USA", null, LocalDateTime.now());
-        GuestDto dto2 = new GuestDto(2L, "Jane", "Smith", "jane@example.com", "USA", null, LocalDateTime.now());
+        GuestDto dto1 = new GuestDto(1L, "John", "Doe", "john@example.com", null, null, null, null);
+        GuestDto dto2 = new GuestDto(2L, "Jane", "Smith", "jane@example.com", null, null, null, null);
         List<GuestDto> expectedDtos = List.of(dto1, dto2);
         when(guestService.getAll()).thenReturn(expectedDtos);
         // When
@@ -41,7 +40,7 @@ class GuestControllerTest {
     void should_return_guest_when_getting_by_id() {
         // Given
         Long guestId = 1L;
-        GuestDto guestDto = new GuestDto(guestId, "John", "Doe", "john@example.com", "USA", "123-456-7890", LocalDateTime.now());
+        GuestDto guestDto = new GuestDto(guestId, "John", "Doe", "john@example.com", "123 Main St", "USA", "CA", "123-456-7890");
         when(guestService.getById(guestId)).thenReturn(guestDto);
         // When
         GuestDto result = guestController.getById(guestId);
@@ -54,7 +53,7 @@ class GuestControllerTest {
     void should_return_optional_guest_when_getting_by_email_and_guest_exists() {
         // Given
         String email = "john@example.com";
-        GuestDto expected = new GuestDto(1L, "John", "Doe", email, "USA", "123-456-7890", LocalDateTime.now());
+        GuestDto expected = new GuestDto(1L, "John", "Doe", email, "123 Main St", "USA", "CA", "123-456-7890");
         when(guestService.getByEmail(email)).thenReturn(expected);
         // When
         GuestDto result = guestController.getByEmail(email);

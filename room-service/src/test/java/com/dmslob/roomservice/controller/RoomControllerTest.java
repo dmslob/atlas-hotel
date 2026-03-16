@@ -25,8 +25,8 @@ class RoomControllerTest {
     @Test
     void should_return_all_rooms_when_room_number_is_null() {
         // Given
-        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed", "AVAILABLE");
-        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed", "RESERVED");
+        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed");
+        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed");
         List<RoomDto> expectedDtos = List.of(dto1, dto2);
         when(roomService.getAll()).thenReturn(expectedDtos);
         // When
@@ -40,8 +40,8 @@ class RoomControllerTest {
     @Test
     void should_return_all_rooms_when_room_number_is_empty() {
         // Given
-        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed", "AVAILABLE");
-        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed", "AVAILABLE");
+        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed");
+        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed");
         List<RoomDto> expectedDtos = List.of(dto1, dto2);
         when(roomService.getAll()).thenReturn(expectedDtos);
         // When
@@ -56,7 +56,7 @@ class RoomControllerTest {
     void should_return_room_when_room_number_is_provided() {
         // Given
         String roomNumber = "101";
-        RoomDto roomDto = new RoomDto(1L, "Deluxe Room", roomNumber, "King Bed", "AVAILABLE");
+        RoomDto roomDto = new RoomDto(1L, "Deluxe Room", roomNumber, "King Bed");
         List<RoomDto> expectedDtos = List.of(roomDto);
         when(roomService.getByRoomNumber(roomNumber)).thenReturn(roomDto);
         // When
@@ -71,7 +71,7 @@ class RoomControllerTest {
     void should_return_room_when_getting_by_id() {
         // Given
         long id = 1L;
-        RoomDto roomDto = new RoomDto(id, "Deluxe Room", "101", "King Bed", "AVAILABLE");
+        RoomDto roomDto = new RoomDto(id, "Deluxe Room", "101", "King Bed");
         when(roomService.getById(id)).thenReturn(roomDto);
         // When
         RoomDto result = roomController.getById(id);

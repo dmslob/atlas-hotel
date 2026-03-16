@@ -3,8 +3,6 @@ package com.dmslob.guestservice.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Data
 @Table(name = "GUEST")
@@ -23,12 +21,15 @@ public class Guest {
     @Column(name = "EMAIL_ADDRESS")
     private String email;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Column(name = "COUNTRY")
     private String country;
 
+    @Column(name = "STATE")
+    private String state;
+
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
-
-    @Column(name = "REGISTERED_AT")
-    private LocalDateTime registeredAt;
 }

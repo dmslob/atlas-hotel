@@ -34,7 +34,7 @@ class RoomServiceTest {
         Long roomId = 1L;
         Room room = new Room();
         room.setId(roomId);
-        RoomDto roomDto = new RoomDto(roomId, "Deluxe Room", "101", "King Bed", "AVAILABLE");
+        RoomDto roomDto = new RoomDto(roomId, "Deluxe Room", "101", "King Bed");
         when(roomRepository.findById(roomId)).thenReturn(Optional.of(room));
         when(modelMapper.map(room, RoomDto.class)).thenReturn(roomDto);
         // When
@@ -64,7 +64,7 @@ class RoomServiceTest {
         String roomNumber = "101";
         Room room = new Room();
         room.setRoomNumber(roomNumber);
-        RoomDto roomDto = new RoomDto(1L, "Deluxe Room", roomNumber, "King Bed", "AVAILABLE");
+        RoomDto roomDto = new RoomDto(1L, "Deluxe Room", roomNumber, "King Bed");
         when(roomRepository.findByRoomNumber(roomNumber)).thenReturn(Optional.of(room));
         when(modelMapper.map(room, RoomDto.class)).thenReturn(roomDto);
         // When
@@ -96,8 +96,8 @@ class RoomServiceTest {
         Room room2 = new Room();
         room2.setId(2L);
         List<Room> rooms = List.of(room1, room2);
-        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed", "AVAILABLE");
-        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed", "RESERVED");
+        RoomDto dto1 = new RoomDto(1L, "Deluxe Room", "101", "King Bed");
+        RoomDto dto2 = new RoomDto(2L, "Standard Room", "102", "Queen Bed");
         List<RoomDto> expectedDtos = List.of(dto1, dto2);
         when(roomRepository.findAll()).thenReturn(rooms);
         when(modelMapper.map(room1, RoomDto.class)).thenReturn(dto1);
