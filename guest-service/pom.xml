@@ -114,6 +114,13 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <image>
+                        <!-- mvn spring-boot:build-image -->
+                        <name>dmslob/${project.artifactId}:v1</name>
+                        <env>
+                            <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+                        </env>
+                    </image>
                 </configuration>
             </plugin>
         </plugins>
