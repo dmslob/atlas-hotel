@@ -1,4 +1,14 @@
 # atlas-hotel
+## 1. Start config-server
+### To access config-server properties
+```http://localhost:8071/guest-service/default```
+
+```http://localhost:8071/room-service/default```
+
+```http://localhost:8071/reservation-service/default```
+
+## 2. Start other services
+
 ### documentation for guest-service
 ```http://localhost:8080/swagger-ui/index.html```
 ### documentation for room-service
@@ -20,9 +30,16 @@
 
 ```docker run -d -p 8082:8082 dmslob/reservation-service:v1.0.0```
 
-### to access config-server properties
-```http://localhost:8071/guest-service/default```
+#### To check all actuator endpoints, use:
+```http://localhost:{service_port}/actuator```
 
-```http://localhost:8071/room-service/default```
+#### To refresh config properties without restarting the app, use actuator endpoint:
+```POST http://localhost:{service_port}/actuator/refresh```
+#### Or use Spring Cloud Bus to broadcast refresh event to all services:
+#### But before we need to have RabbitMQ running, you can run it using docker:
+```docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management```
 
-```http://localhost:8071/reservation-service/default```
+```POST http://localhost:{service_port}/actuator/busrefresh```
+
+#### References:
+- Spring cloud config: https://docs.spring.io/spring-cloud-config/reference/server.html

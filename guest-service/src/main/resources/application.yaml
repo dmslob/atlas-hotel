@@ -5,3 +5,15 @@ spring:
     active: "default"
   config:
     import: "optional:configserver:http://localhost:8071/"
+  # for Spring Cloud Bus RabbitMQ
+#  rabbitmq:
+#    host: "localhost"
+#    port: 5672
+#    username: "guest"
+#    password: "guest"
+# refreshing props at runtime
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

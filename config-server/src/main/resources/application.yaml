@@ -4,9 +4,17 @@ spring:
   application:
     name: config-server
   profiles:
+    # active: git
     active: native
   cloud:
     config:
       server:
         native:
+          # search-locations: "file:///Users//dmslob//workspace//atlas-hotel//config"
           search-locations: classpath:/config
+#        git:
+#          uri: "https://github.com/dmslob/atlas-hotel-config.git"
+#          default-label: main
+#          timeout: 5
+#          clone-on-start: true
+#          force-pull: true
