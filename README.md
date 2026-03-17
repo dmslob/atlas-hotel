@@ -15,5 +15,7 @@
 
 #### To run the app as a docker container
 ```docker run -d -p 8080:8080 dmslob/guest-service:v1.0.0```
+
 ```docker run -d -p 8081:8081 dmslob/room-service:v1.0.0```
+
 ```docker run -d -p 8082:8082 dmslob/reservation-service:v1.0.0```
