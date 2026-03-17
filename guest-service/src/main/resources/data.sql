@@ -9,7 +9,6 @@ VALUES ('James', 'Smith', 'james.smith@example.com', 'USA', '555-0101', '2026-01
        ('Olivia', 'Martinez', 'olivia.mtz@world.com', 'Mexico', '555-0108', '2026-01-16 07:55:40'),
        ('Lucas', 'Anderson', 'lucas.a@tech.com', 'Sweden', '555-0109', '2026-01-17 18:25:00'),
        ('Mia', 'Taylor', 'mia.taylor@mail.com', 'NZ', '555-0110', '2026-01-18 13:40:12'),
--- ... (Truncated for brevity, continuing pattern below)
        ('Ethan', 'Thomas', 'ethan.t@example.com', 'USA', '555-0111', '2026-01-19 09:12:00'),
        ('Ava', 'Hernandez', 'ava.h@isp.net', 'Spain', '555-0112', '2026-01-20 10:45:00'),
        ('Oliver', 'Moore', 'omoore@domain.com', 'UK', '555-0113', '2026-01-21 11:30:22'),
