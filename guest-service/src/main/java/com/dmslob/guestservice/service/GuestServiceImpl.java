@@ -1,5 +1,6 @@
 package com.dmslob.guestservice.service;
 
+import com.dmslob.guestservice.entity.Guest;
 import com.dmslob.guestservice.model.GuestDto;
 import com.dmslob.guestservice.repository.GuestRepository;
 import lombok.AllArgsConstructor;
@@ -38,5 +39,13 @@ public class GuestServiceImpl implements GuestService {
         return StreamSupport.stream(guestRepository.findAll().spliterator(), false)
                 .map(guest -> guestMapper.map(guest, GuestDto.class))
                 .toList();
+    }
+
+    @Override
+    @Transactional
+    public void create(GuestDto guestDto) {
+        var guest = guestMapper.map(guestDto, Guest.class);
+        guestRepository.save(guest);
+        log.info("Guest is created");
     }
 }

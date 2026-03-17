@@ -37,4 +37,18 @@ public class RoomServiceImpl implements RoomService {
                 .map(guest -> modelMapper.map(guest, RoomDto.class))
                 .toList();
     }
+
+    @Override
+    @Transactional
+    public RoomDto update(Long id, RoomDto roomDto) {
+        var room = roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room is not found"));
+        room.setName(roomDto.getName());
+        room.setStatus(roomDto.getStatus());
+        room.setRoomNumber(roomDto.getRoomNumber());
+        room.setBedInfo(roomDto.getBedInfo());
+        var updated = roomRepository.save(room);
+
+        return modelMapper.map(updated, RoomDto.class);
+    }
 }

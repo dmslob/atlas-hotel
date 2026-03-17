@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -75,5 +76,24 @@ public class GuestController {
     public GuestDto getByEmail(@RequestParam(name = "email") String email) {
         log.info("Getting Guest by email {}", email);
         return guestService.getByEmail(email);
+    }
+
+    @Operation(
+            summary = "Create a new Guest",
+            description = "Create a new Guest",
+            method = "POST")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "HTTP Status Created"),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error")
+    })
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void create(@RequestBody GuestDto guestDto) {
+        log.info("Creating Guest with email {}", guestDto.getEmail());
+        guestService.create(guestDto);
     }
 }

@@ -123,4 +123,40 @@ class RoomServiceTest {
         verify(roomRepository).findAll();
         verifyNoInteractions(modelMapper);
     }
+
+    @Test
+    void should_update_room_when_id_exists() {
+        // Given
+        Long id = 1L;
+        RoomDto updateDto = new RoomDto(id, "Updated Room", "101", "King Bed", "OCCUPIED");
+        Room existingRoom = new Room();
+        existingRoom.setId(id);
+        Room updatedRoom = new Room();
+        updatedRoom.setId(id);
+        when(roomRepository.findById(id)).thenReturn(Optional.of(existingRoom));
+        when(roomRepository.save(existingRoom)).thenReturn(updatedRoom);
+        when(modelMapper.map(updatedRoom, RoomDto.class)).thenReturn(updateDto);
+        // When
+        RoomDto result = roomService.update(id, updateDto);
+        // Then
+        assertEquals(updateDto, result);
+        verify(roomRepository).findById(id);
+        verify(roomRepository).save(existingRoom);
+        verify(modelMapper).map(updatedRoom, RoomDto.class);
+    }
+
+    @Test
+    void should_throw_exception_when_update_id_not_found() {
+        // Given
+        Long id = 1L;
+        RoomDto updateDto = new RoomDto(id, "Updated Room", "101", "King Bed", "OCCUPIED");
+        when(roomRepository.findById(id)).thenReturn(Optional.empty());
+        // When
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> roomService.update(id, updateDto));
+        // Then
+        assertEquals("Room is not found", exception.getMessage());
+        verify(roomRepository).findById(id);
+        verifyNoInteractions(modelMapper);
+        verify(roomRepository, never()).save(any());
+    }
 }

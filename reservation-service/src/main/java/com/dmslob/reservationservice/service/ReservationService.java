@@ -19,4 +19,27 @@ public interface ReservationService {
      * @return list of Reservations
      */
     List<ReservationDto> getAll();
+
+    /**
+     * Create a new Reservation
+     *
+     * @param reservationDto Reservation details
+     */
+    void create(ReservationDto reservationDto);
+
+    /**
+     * Update an existing Reservation
+     *
+     * @param reservationId  Reservation id
+     * @param reservationDto updated Reservation details
+     * @return updated Reservation
+     */
+    ReservationDto update(Long reservationId, ReservationDto reservationDto);
+
+    /**
+     * Delete a Reservation by id
+     *
+     * @param reservationId Reservation id
+     */
+    void deleteById(Long reservationId);
 }

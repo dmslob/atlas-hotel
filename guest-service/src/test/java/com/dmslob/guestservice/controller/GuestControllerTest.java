@@ -11,8 +11,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GuestControllerTest {
@@ -61,5 +62,15 @@ class GuestControllerTest {
         // Then
         assertEquals(expected, result);
         verify(guestService).getByEmail(email);
+    }
+
+    @Test
+    void should_create_guest() {
+        // Given
+        var guestDto = new GuestDto(null, "John", "Doe", "john@example.com", "USA", "123-456-7890", LocalDateTime.now());
+        // When
+        guestController.create(guestDto);
+        // Then
+        verify(guestService).create(guestDto);
     }
 }

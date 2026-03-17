@@ -134,4 +134,25 @@ class GuestServiceTest {
         verify(guestRepository).findAll();
         verifyNoInteractions(guestMapper);
     }
+
+    @Test
+    void should_create_guest() {
+        // Given
+        GuestDto guestDto = new GuestDto(
+                1L,
+                "John",
+                "Doe",
+                "john.doe@example.com",
+                "USA",
+                "123-456-7890",
+                LocalDateTime.now());
+        Guest guest = new Guest();
+        when(guestMapper.map(guestDto, Guest.class)).thenReturn(guest);
+        when(guestRepository.save(guest)).thenReturn(guest);
+        // When
+        guestService.create(guestDto);
+        // Then
+        verify(guestMapper).map(guestDto, Guest.class);
+        verify(guestRepository).save(guest);
+    }
 }

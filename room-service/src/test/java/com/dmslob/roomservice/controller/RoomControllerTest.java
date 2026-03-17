@@ -80,4 +80,19 @@ class RoomControllerTest {
         verify(roomService).getById(id);
         verifyNoMoreInteractions(roomService);
     }
+
+    @Test
+    void should_update_room() {
+        // Given
+        long id = 1L;
+        RoomDto inputDto = new RoomDto(id, "Updated Room", "101", "King Bed", "AVAILABLE");
+        RoomDto expectedDto = new RoomDto(id, "Updated Room", "101", "King Bed", "AVAILABLE");
+        when(roomService.update(id, inputDto)).thenReturn(expectedDto);
+        // When
+        RoomDto result = roomController.updateRoom(id, inputDto);
+        // Then
+        assertEquals(expectedDto, result);
+        verify(roomService).update(id, inputDto);
+        verifyNoMoreInteractions(roomService);
+    }
 }

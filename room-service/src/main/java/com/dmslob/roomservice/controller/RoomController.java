@@ -75,4 +75,27 @@ public class RoomController {
         log.info("Get Room by Id {}", id);
         return roomService.getById(id);
     }
+
+    @Operation(
+            summary = "Update Room details",
+            description = "Updates the details of an existing room based on its unique id",
+            parameters = {@Parameter(name = "id",
+                    description = "Path variable representing the unique ID of the room to update")},
+            method = "PUT"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error"
+            )
+    })
+    @PutMapping(value = "/{id}")
+    public RoomDto updateRoom(@PathVariable long id, @RequestBody RoomDto roomDto) {
+        log.info("Updating Room with Id {}", id);
+        return roomService.update(id, roomDto);
+    }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface GuestService {
     /**
      * Get Guest by id
+     *
      * @param guestId Guest id
      * @return GuestDto
      */
@@ -14,6 +15,7 @@ public interface GuestService {
 
     /**
      * Get Guest by email
+     *
      * @param emailAddress email address of Guest
      * @return GuestDto
      */
@@ -21,7 +23,15 @@ public interface GuestService {
 
     /**
      * Get all Guests
+     *
      * @return list of GuestDto
      */
     List<GuestDto> getAll();
+
+    /**
+     * Create a new Guest
+     *
+     * @param guestDto GuestDto to create
+     */
+    void create(GuestDto guestDto);
 }
