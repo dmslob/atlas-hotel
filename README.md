@@ -19,3 +19,10 @@
 ```docker run -d -p 8081:8081 dmslob/room-service:v1.0.0```
 
 ```docker run -d -p 8082:8082 dmslob/reservation-service:v1.0.0```
+
+### to access config-server properties
+```http://localhost:8071/guest-service/default```
+
+```http://localhost:8071/room-service/default```
+
+```http://localhost:8071/reservation-service/default```
