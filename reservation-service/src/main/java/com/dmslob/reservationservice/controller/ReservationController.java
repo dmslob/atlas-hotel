@@ -53,6 +53,9 @@ public class ReservationController {
                     responseCode = "200",
                     description = "HTTP Status OK"),
             @ApiResponse(
+                    responseCode = "404",
+                    description = "Reservation is not found"),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
     })
@@ -69,7 +72,7 @@ public class ReservationController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "201",
-                    description = "HTTP Status Created"),
+                    description = "Reservation is created successfully"),
             @ApiResponse(
                     responseCode = "400",
                     description = "HTTP Status Bad Request"),
@@ -93,13 +96,13 @@ public class ReservationController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "HTTP Status OK"),
+                    description = "Reservation is updated successfully"),
             @ApiResponse(
                     responseCode = "400",
                     description = "HTTP Status Bad Request"),
             @ApiResponse(
                     responseCode = "404",
-                    description = "HTTP Status Not Found"),
+                    description = "Reservation Not Found"),
             @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
@@ -118,10 +121,10 @@ public class ReservationController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "204",
-                    description = "HTTP Status No Content"),
+                    description = "Reservation is deleted successfully"),
             @ApiResponse(
                     responseCode = "404",
-                    description = "HTTP Status Not Found"),
+                    description = "Reservation Not Found"),
             @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")

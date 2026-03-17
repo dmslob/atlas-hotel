@@ -89,7 +89,7 @@ class RoomControllerTest {
         RoomDto expectedDto = new RoomDto(id, "Updated Room", "101", "King Bed", "AVAILABLE");
         when(roomService.update(id, inputDto)).thenReturn(expectedDto);
         // When
-        RoomDto result = roomController.updateRoom(id, inputDto);
+        RoomDto result = roomController.update(id, inputDto);
         // Then
         assertEquals(expectedDto, result);
         verify(roomService).update(id, inputDto);

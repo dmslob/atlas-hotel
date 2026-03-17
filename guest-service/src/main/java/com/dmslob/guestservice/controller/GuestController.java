@@ -50,11 +50,14 @@ public class GuestController {
                     responseCode = "200",
                     description = "HTTP Status OK"),
             @ApiResponse(
+                    responseCode = "404",
+                    description = "Guest is not found"),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping(value = "/{id}")
-    public GuestDto getById(@PathVariable(name = "id") long guestId) {
+    public GuestDto getById(@PathVariable(name = "id") Long guestId) {
         log.info("Getting Guest by id {}", guestId);
         return guestService.getById(guestId);
     }
@@ -68,6 +71,9 @@ public class GuestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "HTTP Status OK"),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Guest is not found"),
             @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")

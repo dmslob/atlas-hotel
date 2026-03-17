@@ -39,6 +39,9 @@ public class RoomController {
                     description = "HTTP Status OK"
             ),
             @ApiResponse(
+                    responseCode = "404",
+                    description = "Room is not found"),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error"
             )
@@ -66,12 +69,15 @@ public class RoomController {
                     description = "HTTP Status OK"
             ),
             @ApiResponse(
+                    responseCode = "404",
+                    description = "Room is not found"),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error"
             )
     })
     @GetMapping(value = "/{id}")
-    public RoomDto getById(@PathVariable long id) {
+    public RoomDto getById(@PathVariable Long id) {
         log.info("Get Room by Id {}", id);
         return roomService.getById(id);
     }
@@ -89,12 +95,15 @@ public class RoomController {
                     description = "HTTP Status OK"
             ),
             @ApiResponse(
+                    responseCode = "404",
+                    description = "Room is not found"),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error"
             )
     })
     @PutMapping(value = "/{id}")
-    public RoomDto updateRoom(@PathVariable long id, @RequestBody RoomDto roomDto) {
+    public RoomDto update(@PathVariable Long id, @RequestBody RoomDto roomDto) {
         log.info("Updating Room with Id {}", id);
         return roomService.update(id, roomDto);
     }

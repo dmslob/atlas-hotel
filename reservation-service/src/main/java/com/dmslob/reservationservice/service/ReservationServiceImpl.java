@@ -1,6 +1,7 @@
 package com.dmslob.reservationservice.service;
 
 import com.dmslob.reservationservice.entity.Reservation;
+import com.dmslob.reservationservice.exception.ReservationNotFoundException;
 import com.dmslob.reservationservice.model.ReservationDto;
 import com.dmslob.reservationservice.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class ReservationServiceImpl implements ReservationService {
     public ReservationDto getById(Long reservationId) {
         return reservationRepository.findById(reservationId)
                 .map(reservation -> guestMapper.map(reservation, ReservationDto.class))
-                .orElse(null);
+                .orElseThrow(() -> new ReservationNotFoundException("Reservation is not found"));
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Transactional
     public ReservationDto update(Long reservationId, ReservationDto reservationDto) {
         var existing = reservationRepository.findById(reservationId)
-                .orElseThrow(() -> new RuntimeException("Reservation is not found"));
+                .orElseThrow(() -> new ReservationNotFoundException("Reservation is not found"));
         existing.setRoomId(reservationDto.getRoomId());
         existing.setGuestId(reservationDto.getGuestId());
         existing.setDateIn(reservationDto.getDateIn());

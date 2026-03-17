@@ -1,6 +1,7 @@
 package com.dmslob.reservationservice.service;
 
 import com.dmslob.reservationservice.entity.Reservation;
+import com.dmslob.reservationservice.exception.ReservationNotFoundException;
 import com.dmslob.reservationservice.model.ReservationDto;
 import com.dmslob.reservationservice.repository.ReservationRepository;
 import org.junit.jupiter.api.Test;
@@ -47,14 +48,12 @@ class ReservationServiceTest {
     }
 
     @Test
-    void should_return_null_when_reservation_id_not_found() {
+    void should_throw_exception_when_reservation_not_found() {
         // Given
-        Long reservationId = 999L;
+        Long reservationId = 1L;
         when(reservationRepository.findById(reservationId)).thenReturn(Optional.empty());
-        // When
-        ReservationDto result = reservationService.getById(reservationId);
-        // Then
-        assertNull(result);
+        // When & Then
+        assertThrows(ReservationNotFoundException.class, () -> reservationService.getById(reservationId));
         verify(reservationRepository).findById(reservationId);
         verifyNoInteractions(guestMapper);
     }

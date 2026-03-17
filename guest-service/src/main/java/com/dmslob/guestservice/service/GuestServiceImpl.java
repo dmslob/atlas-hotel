@@ -1,6 +1,7 @@
 package com.dmslob.guestservice.service;
 
 import com.dmslob.guestservice.entity.Guest;
+import com.dmslob.guestservice.exception.GuestNotFoundException;
 import com.dmslob.guestservice.model.GuestDto;
 import com.dmslob.guestservice.repository.GuestRepository;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class GuestServiceImpl implements GuestService {
     public GuestDto getById(Long guestId) {
         return guestRepository.findById(guestId)
                 .map(guest -> guestMapper.map(guest, GuestDto.class))
-                .orElseThrow(() -> new RuntimeException("Guest is not found"));
+                .orElseThrow(() -> new GuestNotFoundException("Guest is not found"));
     }
 
     @Override
@@ -30,7 +31,7 @@ public class GuestServiceImpl implements GuestService {
     public GuestDto getByEmail(String email) {
         return guestRepository.findByEmail(email)
                 .map(guest -> guestMapper.map(guest, GuestDto.class))
-                .orElseThrow(() -> new RuntimeException("Guest is not found"));
+                .orElseThrow(() -> new GuestNotFoundException("Guest is not found"));
     }
 
     @Override

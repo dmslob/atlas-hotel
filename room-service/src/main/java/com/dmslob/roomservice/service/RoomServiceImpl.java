@@ -1,5 +1,6 @@
 package com.dmslob.roomservice.service;
 
+import com.dmslob.roomservice.exception.RoomNotFoundException;
 import com.dmslob.roomservice.model.RoomDto;
 import com.dmslob.roomservice.repository.RoomRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class RoomServiceImpl implements RoomService {
     public RoomDto getById(Long roomId) {
         return roomRepository.findById(roomId)
                 .map(room -> modelMapper.map(room, RoomDto.class))
-                .orElseThrow(() -> new RuntimeException("Room is not found"));
+                .orElseThrow(() -> new RoomNotFoundException("Room is not found"));
     }
 
     @Override
@@ -27,7 +28,7 @@ public class RoomServiceImpl implements RoomService {
     public RoomDto getByRoomNumber(String roomNumber) {
         return roomRepository.findByRoomNumber(roomNumber)
                 .map(room -> modelMapper.map(room, RoomDto.class))
-                .orElseThrow(() -> new RuntimeException("Room is not found"));
+                .orElseThrow(() -> new RoomNotFoundException("Room is not found"));
     }
 
     @Override
@@ -42,7 +43,7 @@ public class RoomServiceImpl implements RoomService {
     @Transactional
     public RoomDto update(Long id, RoomDto roomDto) {
         var room = roomRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Room is not found"));
+                .orElseThrow(() -> new RoomNotFoundException("Room is not found"));
         room.setName(roomDto.getName());
         room.setStatus(roomDto.getStatus());
         room.setRoomNumber(roomDto.getRoomNumber());

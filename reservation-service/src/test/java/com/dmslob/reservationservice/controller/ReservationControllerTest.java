@@ -1,5 +1,6 @@
 package com.dmslob.reservationservice.controller;
 
+import com.dmslob.reservationservice.exception.ReservationNotFoundException;
 import com.dmslob.reservationservice.model.ReservationDto;
 import com.dmslob.reservationservice.service.ReservationService;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ReservationControllerTest {
@@ -51,14 +54,13 @@ class ReservationControllerTest {
     }
 
     @Test
-    void should_return_null_when_getting_by_id_and_reservation_not_found() {
+    void should_throw_exception_when_getting_by_id_and_reservation_not_found() {
         // Given
         Long reservationId = 999L;
-        when(reservationService.getById(reservationId)).thenReturn(null);
-        // When
-        ReservationDto result = reservationController.getById(reservationId);
-        // Then
-        assertNull(result);
+        when(reservationService.getById(reservationId))
+                .thenThrow(new ReservationNotFoundException("Reservation not found"));
+        // When & Then
+        assertThrows(ReservationNotFoundException.class, () -> reservationController.getById(reservationId));
         verify(reservationService).getById(reservationId);
     }
 
