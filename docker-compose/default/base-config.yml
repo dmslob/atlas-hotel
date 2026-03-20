@@ -1,0 +1,38 @@
+services:
+  network-deploy-service:
+    networks:
+      - atlas-hotel-network
+
+  microservice-db-config:
+    extends:
+      service: network-deploy-service
+    image: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      timeout: 5s
+      retries: 5
+      interval: 10s
+      start_period: 10s
+    environment:
+      POSTGRES_DB: atlas-hotel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  microservice-base-config:
+    extends:
+      service: network-deploy-service
+    deploy:
+      resources:
+        limits:
+          memory: 1000m
+
+  microservice-configserver-config:
+    extends:
+      service: microservice-base-config
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://atlas-hotel-db:5432/atlas-hotel
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres

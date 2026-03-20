@@ -1,4 +1,19 @@
 # atlas-hotel
+#### To build the project, run for each service:
+```mvn spring-boot:build-image```
+
+#### To push the image to docker hub, run for each service:
+```docker image push docker.io/dmslob/config-server:v1```
+
+```docker image push docker.io/dmslob/guest-service:v1```
+
+```docker image push docker.io/dmslob/room-service:v1```
+
+```docker image push docker.io/dmslob/reservation-service:v1```
+
+#### To run container locally, run command from docker-compose/default folder:
+```docker compose up -d```
+
 ## 1. Start config-server
 ### To access config-server properties
 ```http://localhost:8071/guest-service/default```

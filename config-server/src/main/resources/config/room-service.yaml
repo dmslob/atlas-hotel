@@ -5,13 +5,21 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:rooms
+    url: jdbc:postgresql://localhost:5432/atlas-hotel
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  sql:
+    init:
+      mode: always
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
-    show-sql: false
+      ddl-auto: none
+    defer-datasource-initialization: true
+    show-sql: true
     properties:
       hibernate:
-        format_sql: false
+        format_sql: true
 rooms:
   message: "Hello, rooms!"

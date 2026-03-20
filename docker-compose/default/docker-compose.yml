@@ -1,0 +1,77 @@
+services:
+  atlas-hotel-db:
+    container_name: atlas-hotel-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: atlas-hotel
+    extends:
+      file: base-config.yml
+      service: microservice-db-config
+
+  configserver:
+    image: "dmslob/config-server:v1"
+    container_name: configserver
+    ports:
+      - "8071:8071"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    extends:
+      file: base-config.yml
+      service: microservice-base-config
+
+  guest-service:
+    image: "dmslob/guest-service:v1"
+    container_name: guest-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      atlas-hotel-db:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "guest-service"
+    extends:
+      file: base-config.yml
+      service: microservice-configserver-config
+
+  room-service:
+    image: "dmslob/room-service:v1"
+    container_name: room-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      atlas-hotel-db:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "room-service"
+    extends:
+      file: base-config.yml
+      service: microservice-configserver-config
+
+  reservation-service:
+    image: "dmslob/reservation-service:v1"
+    container_name: reservation-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      atlas-hotel-db:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "reservation-service"
+    extends:
+      file: base-config.yml
+      service: microservice-configserver-config
+
+networks:
+  atlas-hotel-network:
+    driver: "bridge"
