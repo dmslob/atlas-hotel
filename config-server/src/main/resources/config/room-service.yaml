@@ -1,25 +1,8 @@
-server:
-  port: 8081
-spring:
-  h2:
-    console:
-      enabled: true
-  datasource:
-    url: jdbc:postgresql://localhost:5432/atlas-hotel
-    driverClassName: org.postgresql.Driver
-    username: postgres
-    password: postgres
-  sql:
-    init:
-      mode: never
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
-    defer-datasource-initialization: true
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+info:
+  app:
+    name: "Room Service"
+    description: "A service to manage hotel rooms."
+    version: "1.0.0"
+
 rooms:
   message: "Hello, rooms!"

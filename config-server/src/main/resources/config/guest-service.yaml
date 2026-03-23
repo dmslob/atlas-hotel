@@ -1,25 +1,9 @@
-server:
-  port: 8080
-spring:
-  h2:
-    console:
-      enabled: true
-  datasource:
-    url: jdbc:postgresql://localhost:5432/atlas-hotel
-    driverClassName: org.postgresql.Driver
-    username: postgres
-    password: postgres
-  sql:
-    init:
-      mode: never
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
-    defer-datasource-initialization: true
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+# For externalized configuration in a distributed system.
 guests:
   message: "Hello, Guest!"
+
+info:
+  app:
+    name: "Guest Service"
+    description: "A service to manage hotel guests."
+    version: "1.0.0"

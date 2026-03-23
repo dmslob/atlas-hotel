@@ -3,6 +3,8 @@ package com.dmslob.reservationservice.config;
 import com.dmslob.reservationservice.repository.ReservationRepository;
 import com.dmslob.reservationservice.service.ReservationService;
 import com.dmslob.reservationservice.service.ReservationServiceImpl;
+import com.dmslob.reservationservice.service.client.GuestFeignClient;
+import com.dmslob.reservationservice.service.client.RoomFeignClient;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +19,13 @@ public class AppConfig {
     @Bean
     ReservationService reservationService(
             ReservationRepository reservationRepository,
-            ModelMapper modelMapper) {
-        return new ReservationServiceImpl(reservationRepository, modelMapper);
+            ModelMapper modelMapper,
+            GuestFeignClient guestFeignClient,
+            RoomFeignClient roomFeignClient) {
+        return new ReservationServiceImpl(
+                reservationRepository,
+                modelMapper,
+                guestFeignClient,
+                roomFeignClient);
     }
 }

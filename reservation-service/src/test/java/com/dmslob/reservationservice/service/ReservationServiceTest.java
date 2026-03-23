@@ -4,6 +4,8 @@ import com.dmslob.reservationservice.entity.Reservation;
 import com.dmslob.reservationservice.exception.ReservationNotFoundException;
 import com.dmslob.reservationservice.model.ReservationDto;
 import com.dmslob.reservationservice.repository.ReservationRepository;
+import com.dmslob.reservationservice.service.client.GuestFeignClient;
+import com.dmslob.reservationservice.service.client.RoomFeignClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,6 +28,12 @@ class ReservationServiceTest {
 
     @Mock
     private ModelMapper guestMapper;
+
+    @Mock
+    private GuestFeignClient guestFeignClient;
+
+    @Mock
+    private RoomFeignClient roomFeignClient;
 
     @InjectMocks
     private ReservationServiceImpl reservationService;

@@ -4,17 +4,23 @@ import com.dmslob.reservationservice.entity.Reservation;
 import com.dmslob.reservationservice.exception.ReservationNotFoundException;
 import com.dmslob.reservationservice.model.ReservationDto;
 import com.dmslob.reservationservice.repository.ReservationRepository;
+import com.dmslob.reservationservice.service.client.GuestFeignClient;
+import com.dmslob.reservationservice.service.client.RoomFeignClient;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+@Slf4j
 @AllArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final ModelMapper guestMapper;
+    private final GuestFeignClient guestFeignClient;
+    private final RoomFeignClient roomFeignClient;
 
     @Override
     @Transactional(readOnly = true)
@@ -35,6 +41,12 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     @Transactional
     public void create(ReservationDto reservationDto) {
+        log.info("Creating new reservation for guest id {} and room id {}",
+                reservationDto.getGuestId(), reservationDto.getRoomId());
+        var guest = guestFeignClient.findById(reservationDto.getGuestId());
+        log.info("Guest {} with id {} found", guest.getFirstName(), guest.getId());
+        var room = roomFeignClient.findById(reservationDto.getRoomId());
+        log.info("Room {} with id {} found", room.getRoomNumber(), room.getId());
         var toSave = guestMapper.map(reservationDto, Reservation.class);
         reservationRepository.save(toSave);
     }
