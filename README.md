@@ -1,9 +1,11 @@
 # atlas-hotel
-#### To build the project, run for each service:
+#### To build docker image for each service:
 ```mvn spring-boot:build-image```
 
 #### To push the image to docker hub, run for each service:
 ```docker image push docker.io/dmslob/config-server:v1```
+
+```docker image push docker.io/dmslob/eureka-server:v1```
 
 ```docker image push docker.io/dmslob/guest-service:v1```
 
@@ -14,28 +16,29 @@
 #### To run container locally, run command from docker-compose/default folder:
 ```docker compose up -d```
 
-## 1. Start config-server
-### To access config-server properties
+#### To access Eureka server dashboard:
+```http://localhost:8070```
+```http://localhost:8070/eureka/apps```
+
+#### To access config-server properties
 ```http://localhost:8071/guest-service/default```
 
 ```http://localhost:8071/room-service/default```
 
 ```http://localhost:8071/reservation-service/default```
 
-## 2. Start other services
-
-### documentation for guest-service
+#### documentation for guest-service
 ```http://localhost:8080/swagger-ui/index.html```
-### documentation for room-service
+#### documentation for room-service
 ```http://localhost:8081/swagger-ui/index.html```
-### documentation for reservation-service
+#### documentation for reservation-service
 ```http://localhost:8082/swagger-ui/index.html```
 
-### h2 database for guest-service
+#### h2 database for guest-service
 ```http://localhost:8080/h2-console```
-### h2 database for room-service
+#### h2 database for room-service
 ```http://localhost:8081/h2-console```
-### h2 database for reservation-service
+#### h2 database for reservation-service
 ```http://localhost:8082/h2-console```
 
 #### To run the app as a docker container
