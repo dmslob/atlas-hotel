@@ -35,8 +35,8 @@ public class GuestController {
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping
-    public List<GuestDto> getAll() {
-        log.info("Getting all Guests");
+    public List<GuestDto> getAll(@RequestHeader("atlas-correlation-id") String correlationId) {
+        log.info("Getting all Guests with correlation id {}", correlationId);
         return guestService.getAll();
     }
 
@@ -57,8 +57,10 @@ public class GuestController {
                     description = "HTTP Status Internal Server Error")
     })
     @GetMapping(value = "/{id}")
-    public GuestDto getById(@PathVariable(name = "id") Long guestId) {
-        log.info("Getting Guest by id {}", guestId);
+    public GuestDto getById(
+            @RequestHeader("atlas-correlation-id") String correlationId,
+            @PathVariable(name = "id") Long guestId) {
+        log.info("Getting Guest by id {} with correlation id {}", guestId, correlationId);
         return guestService.getById(guestId);
     }
 

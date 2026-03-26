@@ -132,13 +132,24 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <image>
-                        <!-- mvn spring-boot:build-image -->
-                        <name>dmslob/${project.artifactId}:v1</name>
-                        <env>
-                            <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
-                        </env>
-                    </image>
+<!--                    <image>-->
+<!--                        &lt;!&ndash; mvn spring-boot:build-image &ndash;&gt;-->
+<!--                        <name>dmslob/${project.artifactId}:v1</name>-->
+<!--                        <env>-->
+<!--                            <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>-->
+<!--                        </env>-->
+<!--                    </image>-->
+                </configuration>
+            </plugin>
+            <!--mvn compile jib:dockerBuild-->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <to>
+                        <image>dmslob/${project.artifactId}:v1</image>
+                    </to>
                 </configuration>
             </plugin>
         </plugins>

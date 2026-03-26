@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GuestControllerTest {
+    private static final String CORRELATION_ID = "correlation-id";
 
     @Mock
     private GuestService guestService;
@@ -32,7 +33,7 @@ class GuestControllerTest {
         List<GuestDto> expectedDtos = List.of(dto1, dto2);
         when(guestService.getAll()).thenReturn(expectedDtos);
         // When
-        List<GuestDto> result = guestController.getAll();
+        List<GuestDto> result = guestController.getAll(CORRELATION_ID);
         // Then
         assertEquals(expectedDtos, result);
         verify(guestService).getAll();
@@ -45,7 +46,7 @@ class GuestControllerTest {
         GuestDto guestDto = new GuestDto(guestId, "John", "Doe", "john@example.com", "USA", "123-456-7890", LocalDateTime.now());
         when(guestService.getById(guestId)).thenReturn(guestDto);
         // When
-        GuestDto result = guestController.getById(guestId);
+        GuestDto result = guestController.getById(CORRELATION_ID, guestId);
         // Then
         assertEquals(guestDto, result);
         verify(guestService).getById(guestId);

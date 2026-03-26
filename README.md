@@ -5,7 +5,9 @@
 #### To push the image to docker hub, run for each service:
 ```docker image push docker.io/dmslob/config-server:v1```
 
-```docker image push docker.io/dmslob/eureka-server:v1```
+```docker image push docker.io/dmslob/eurekaserver:v1```
+
+```docker image push docker.io/dmslob/gatewayserver:v1```
 
 ```docker image push docker.io/dmslob/guest-service:v1```
 

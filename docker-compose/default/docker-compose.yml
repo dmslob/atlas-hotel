@@ -18,7 +18,7 @@ services:
       test: "curl --fail --silent http://localhost:8071/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 10
       start_period: 10s
     extends:
       file: base-config.yml
@@ -33,7 +33,7 @@ services:
       test: "curl --fail --silent http://localhost:8070/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 10
       start_period: 10s
     extends:
       file: base-config.yml
@@ -49,6 +49,12 @@ services:
     container_name: guest-service
     ports:
       - "8080:8080"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     depends_on:
       atlas-hotel-db:
         condition: service_healthy
@@ -65,6 +71,12 @@ services:
     container_name: room-service
     ports:
       - "8081:8081"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8081/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     depends_on:
       atlas-hotel-db:
         condition: service_healthy
@@ -81,6 +93,12 @@ services:
     container_name: reservation-service
     ports:
       - "8082:8082"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8082/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     depends_on:
       atlas-hotel-db:
         condition: service_healthy
@@ -88,6 +106,24 @@ services:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "reservation-service"
+    extends:
+      file: base-config.yml
+      service: microservice-eureka-config
+
+  gatewayserver:
+    image: "dmslob/gatewayserver:v1"
+    container_name: gatewayserver
+    ports:
+      - "8072:8072"
+    depends_on:
+      guest-service:
+        condition: service_healthy
+      room-service:
+        condition: service_healthy
+      reservation-service:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "gatewayserver"
     extends:
       file: base-config.yml
       service: microservice-eureka-config
