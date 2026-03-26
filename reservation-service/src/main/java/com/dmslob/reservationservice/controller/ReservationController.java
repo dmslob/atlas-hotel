@@ -82,10 +82,12 @@ public class ReservationController {
     })
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(@RequestBody ReservationDto dto) {
+    public void create(
+            @RequestHeader("atlas-correlation-id") String correlationId,
+            @RequestBody ReservationDto dto) {
         log.info("Creating new reservation for guest id {} and room id {}",
                 dto.getGuestId(), dto.getRoomId());
-        reservationService.create(dto);
+        reservationService.create(correlationId, dto);
     }
 
     @Operation(

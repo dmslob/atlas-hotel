@@ -14,6 +14,9 @@ spring:
             locator:
               enabled: false
               lowerCaseServiceId: true
+          httpclient:
+            connect-timeout: 1000
+            response-timeout: 3s
 eureka:
   instance:
     preferIpAddress: true
@@ -46,3 +49,11 @@ logging:
     com:
       dmslob:
         gatewayserver: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000

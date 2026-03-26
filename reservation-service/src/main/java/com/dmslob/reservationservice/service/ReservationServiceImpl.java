@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.StreamSupport;
 
 @Slf4j
@@ -40,13 +41,20 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public void create(ReservationDto reservationDto) {
+    public void create(String correlationId, ReservationDto reservationDto) {
         log.info("Creating new reservation for guest id {} and room id {}",
                 reservationDto.getGuestId(), reservationDto.getRoomId());
-        var guest = guestFeignClient.findById(reservationDto.getGuestId());
-        log.info("Guest {} with id {} found", guest.getFirstName(), guest.getId());
+        var guest = guestFeignClient.findById(correlationId,
+                reservationDto.getGuestId());
+        // todo: handle the case when guest is not found
+        if (Objects.nonNull(guest)) {
+            log.info("Guest {} with id {} found", guest.getFirstName(), guest.getId());
+        }
+        // todo: handle the case when room is not found
         var room = roomFeignClient.findById(reservationDto.getRoomId());
-        log.info("Room {} with id {} found", room.getRoomNumber(), room.getId());
+        if (Objects.nonNull(room)) {
+            log.info("Room {} with id {} found", room.getRoomNumber(), room.getId());
+        }
         var toSave = guestMapper.map(reservationDto, Reservation.class);
         reservationRepository.save(toSave);
     }

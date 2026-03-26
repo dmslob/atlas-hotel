@@ -23,9 +23,10 @@ public interface ReservationService {
     /**
      * Create a new Reservation
      *
+     * @param correlationId correlation id for tracing
      * @param reservationDto Reservation details
      */
-    void create(ReservationDto reservationDto);
+    void create(String correlationId, ReservationDto reservationDto);
 
     /**
      * Update an existing Reservation
