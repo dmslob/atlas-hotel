@@ -2,6 +2,7 @@ package com.dmslob.guestservice.controller;
 
 import com.dmslob.guestservice.model.GuestDto;
 import com.dmslob.guestservice.service.GuestService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -34,6 +35,7 @@ public class GuestController {
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
     })
+    @RateLimiter(name = "getAllGuests")
     @GetMapping
     public List<GuestDto> getAll(@RequestHeader("atlas-correlation-id") String correlationId) {
         log.info("Getting all Guests with correlation id {}", correlationId);
@@ -98,6 +100,7 @@ public class GuestController {
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
     })
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public void create(@RequestBody GuestDto guestDto) {

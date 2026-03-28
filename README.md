@@ -15,6 +15,12 @@
 
 ```docker image push docker.io/dmslob/reservation-service:v1```
 
+#### To run redis docker container (we need it for rate limiter):
+```docker run -d -p 6379:6379 --name atlas-redis -d redis```
+#### To test rate limiter, we can use Apache Benchmark tool, for example:
+#### Here we are testing guest-service endpoint with 10 requests and concurrency of 2, and verbose output:
+```ab -n 10 -c 2 -v 3 http://localhost:8072/reservations```
+
 #### To run container locally, run command from docker-compose/default folder:
 ```docker compose up -d```
 

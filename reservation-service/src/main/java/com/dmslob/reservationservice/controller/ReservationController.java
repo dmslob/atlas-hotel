@@ -37,6 +37,7 @@ public class ReservationController {
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error")
     })
+    //@Retry(name = "getAll", fallbackMethod = "getAllFallback")
     @GetMapping
     public List<ReservationDto> getAll() {
         log.info("Getting all Reservations");

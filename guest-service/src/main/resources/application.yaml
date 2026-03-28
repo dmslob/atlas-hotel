@@ -58,3 +58,10 @@ eureka:
       com:
         dmslob:
           guestservice: DEBUG
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      timeoutDuration: 1000
+      limitRefreshPeriod: 1000
+      limitForPeriod: 1
