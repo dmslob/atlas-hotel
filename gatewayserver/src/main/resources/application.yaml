@@ -16,7 +16,7 @@ spring:
               lowerCaseServiceId: true
           httpclient:
             connect-timeout: 1000
-            response-timeout: 3s
+            response-timeout: 10s
   data:
     redis:
       connect-timeout: 2s
@@ -43,6 +43,9 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 info:
   app:

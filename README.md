@@ -15,8 +15,6 @@
 
 ```docker image push docker.io/dmslob/reservation-service:v1```
 
-#### To run redis docker container (we need it for rate limiter):
-```docker run -d -p 6379:6379 --name atlas-redis -d redis```
 #### To test rate limiter, we can use Apache Benchmark tool, for example:
 #### Here we are testing guest-service endpoint with 10 requests and concurrency of 2, and verbose output:
 ```ab -n 10 -c 2 -v 3 http://localhost:8072/reservations```
@@ -42,13 +40,6 @@
 #### documentation for reservation-service
 ```http://localhost:8082/swagger-ui/index.html```
 
-#### h2 database for guest-service
-```http://localhost:8080/h2-console```
-#### h2 database for room-service
-```http://localhost:8081/h2-console```
-#### h2 database for reservation-service
-```http://localhost:8082/h2-console```
-
 #### To run the app as a docker container
 ```docker run -d -p 8080:8080 dmslob/guest-service:v1.0.0```
 
@@ -66,6 +57,21 @@
 ```docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management```
 
 ```POST http://localhost:{service_port}/actuator/busrefresh```
+
+#### Grafana dashboard for monitoring:
+```http://localhost:3000```
+```admin:12345```
+
+#### Grafana dashboards:
+```https://grafana.com/grafana/dashboards/4701-jvm-micrometer/```
+
+```https://grafana.com/grafana/dashboards/11378-justai-system-monitor/```
+
+#### Prometheus endpoint for scraping metrics:
+```http://localhost:{port}/actuator/prometheus```
+
+#### Prometheus dashboard:
+```http://localhost:9090/targets```
 
 #### References:
 - Spring cloud config: https://docs.spring.io/spring-cloud-config/reference/server.html
