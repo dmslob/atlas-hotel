@@ -1,6 +1,6 @@
 # atlas-hotel
 #### To build docker image for each service:
-```mvn spring-boot:build-image```
+```mvn compile jib:dockerBuild```
 
 #### To push the image to docker hub, run for each service:
 ```docker image push docker.io/dmslob/config-server:v1```
