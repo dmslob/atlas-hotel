@@ -15,10 +15,6 @@
 
 ```docker image push docker.io/dmslob/reservation-service:v1```
 
-#### To test rate limiter, we can use Apache Benchmark tool, for example:
-#### Here we are testing guest-service endpoint with 10 requests and concurrency of 2, and verbose output:
-```ab -n 10 -c 2 -v 3 http://localhost:8072/reservations```
-
 #### To run container locally, run command from docker-compose/default folder:
 ```docker compose up -d```
 
@@ -58,6 +54,10 @@
 
 ```POST http://localhost:{service_port}/actuator/busrefresh```
 
+#### To test rate limiter, we can use Apache Benchmark tool, for example:
+#### Here we are testing guest-service endpoint with 10 requests and concurrency of 2, and verbose output:
+```ab -n 10 -c 2 -v 3 http://localhost:8072/reservations```
+
 #### Grafana dashboard for monitoring:
 ```http://localhost:3000```
 ```admin:12345```
@@ -72,6 +72,10 @@
 
 #### Prometheus dashboard:
 ```http://localhost:9090/targets```
+
+#### To run keycloak server for authentication and authorization, you can use docker:
+```docker run -d -p 7080:8080 --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:latest start-dev```
+
 
 #### References:
 - Spring cloud config: https://docs.spring.io/spring-cloud-config/reference/server.html
